@@ -1,0 +1,18 @@
+syntax = "proto3";
+package pb;
+option go_package = "./;pb";
+
+message Req {
+    string ClusterKey = 1;
+    string NodeIp = 2;
+}
+
+message Task {
+    string TaskID = 1;
+    string Repo = 2;
+    string Tag = 3;
+}
+
+service TaskProxy {
+    rpc GetTask(Req) returns(stream Task);
+}
